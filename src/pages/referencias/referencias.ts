@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ReferenciasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ReferenciaDTO } from '../../models/referencia.dto';
+import { ReferenciaService } from '../../services/domain/referencia.service';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReferenciasPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  refs : ReferenciaDTO = {
+    codigo: ""
+  };
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public referenciaService: ReferenciaService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReferenciasPage');
+  }
+
+  searchReferenciaCodigo() {
+    this.referenciaService.findReferenciaCodigo()
+       {
+        console.log(this.refs);
+       }
+
   }
 
 }

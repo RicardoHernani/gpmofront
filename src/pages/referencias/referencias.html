@@ -8,5 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-
+  <br/>
+  <h4>Pesquisar</h4>
+  <br/>
+  <form>
+    <ion-item>
+        <ion-input [(ngModel)]="refs.codigo" name="codigo"  clearInput placeholder="Digite o código do procedimento" type="number"></ion-input>
+    </ion-item>
+    <button ion-button block (click)="searchReferenciaCodigo()">OK</button>
+  </form>
 </ion-content>

@@ -24,12 +24,14 @@ export class ReferenciasPage {
     console.log('ionViewDidLoad ReferenciasPage');
   }
 
-  searchReferenciaCodigo() {
-    this.referenciaService.findReferenciaCodigo()
-       {
-        console.log(this.refs);
-       }
-
+  showByCodigo() {
+   console.log(this.refs.codigo);
+    this.referenciaService.findByCodigo(this.refs.codigo)
+      .subscribe(resposta => {
+        console.log(resposta);
+      },
+      error => {
+        console.log(error);
+      });
   }
-
 }

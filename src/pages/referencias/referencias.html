@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <br/>
-  <h4>Pesquisar</h4>
+  <h4>Pesquisar Código</h4>
   <br/>
   <form>
     <ion-item>
@@ -19,15 +19,20 @@
   </form>
   <br/><br/>
  
-  <ion-card *ngIf="isTyped" color="light">
+  <ion-card class="cor-card" *ngIf="isTyped">
     <ion-card-title>
-        Código: 31303129
+       <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
     </ion-card-title>
     <ion-card-content>
-      <p>Descrição: Histerectomia</p>
-      <p>Pontos: 33</p>
-      <p>Valor: $200,00</p>
+      <p><span class="tipo-item">Descrição: </span>
+         <span class="item">{{ guardaResposta.descricao }}</span>
+      </p>
+      <p><span class="tipo-item">Pontos: </span>
+         <span class="item">{{ guardaResposta.pontos }}</span>
+      </p>
+      <p><span class="tipo-item">Valor: </span>
+         <span class="item">{{ guardaResposta.valor}}</span>
+      </p>
     </ion-card-content>
   </ion-card>
 </ion-content>
-

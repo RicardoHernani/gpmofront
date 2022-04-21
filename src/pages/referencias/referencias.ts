@@ -13,6 +13,8 @@ export class ReferenciasPage {
   refs : ReferenciaDTO = {
     codigo: ""
   };
+  guardaResposta: ReferenciaDTO;
+  
 
   constructor(
     public navCtrl: NavController,
@@ -23,7 +25,7 @@ export class ReferenciasPage {
   showByCodigo() {
     this.referenciaService.findByCodigo(this.refs.codigo)
       .subscribe(resposta => {
-        console.log(resposta);
+        this.guardaResposta = resposta;
         this.isTyped = true;
       },
       error => {

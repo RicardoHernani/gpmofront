@@ -9,7 +9,7 @@ import { ReferenciaService } from '../../services/domain/referencia.service';
   templateUrl: 'referencias.html',
 })
 export class ReferenciasPage {
-
+  isTyped : boolean = false;
   refs : ReferenciaDTO = {
     codigo: ""
   };
@@ -20,15 +20,11 @@ export class ReferenciasPage {
     public referenciaService: ReferenciaService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReferenciasPage');
-  }
-
   showByCodigo() {
-   console.log(this.refs.codigo);
     this.referenciaService.findByCodigo(this.refs.codigo)
       .subscribe(resposta => {
         console.log(resposta);
+        this.isTyped = true;
       },
       error => {
         console.log(error);

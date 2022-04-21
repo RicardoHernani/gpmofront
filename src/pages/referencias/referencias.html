@@ -17,4 +17,17 @@
     </ion-item>
     <button ion-button block (click)="showByCodigo()">OK</button>
   </form>
+  <br/><br/>
+ 
+  <ion-card *ngIf="isTyped" color="light">
+    <ion-card-title>
+        Código: 31303129
+    </ion-card-title>
+    <ion-card-content>
+      <p>Descrição: Histerectomia</p>
+      <p>Pontos: 33</p>
+      <p>Valor: $200,00</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

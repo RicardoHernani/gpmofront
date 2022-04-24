@@ -8,31 +8,39 @@
 </ion-header>
 
 <ion-content padding>
-  <br/>
-  <h4>Pesquisar Código</h4>
-  <br/>
+  <h4>Pesquisar</h4>
   <form>
     <ion-item>
         <ion-input [(ngModel)]="refs.codigo" name="codigo" clearInput placeholder="Digite o código do procedimento" type="number"></ion-input>
     </ion-item>
-    <button ion-button block (click)="showByCodigo()">OK</button>
+    <br/>
+    <h6>OU</h6>
+    <br/>
+    <ion-item>
+        <ion-input [(ngModel)]="refs.descricao" name="descricao"  clearInput placeholder="Digite a descrição do procedimento" type=""></ion-input>
+    </ion-item>
+    <br/>
+    <button ion-button block (click)="showBy()">OK</button>
   </form>
-  <br/><br/>
- 
-  <ion-card class="cor-card" *ngIf="isTyped">
-    <ion-card-title>
-       <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
-    </ion-card-title>
-    <ion-card-content>
-      <p><span class="tipo-item">Descrição: </span>
-         <span class="item">{{ guardaResposta.descricao }}</span>
-      </p>
-      <p><span class="tipo-item">Pontos: </span>
-         <span class="item">{{ guardaResposta.pontos }}</span>
-      </p>
-      <p><span class="tipo-item">Valor: </span>
-         <span class="item">{{ guardaResposta.valor}}</span>
-      </p>
-    </ion-card-content>
-  </ion-card>
+
+  <br/>
+
+  <div>
+    <ion-card class="cor-card" *ngIf="isTyped">
+      <ion-card-title>
+        <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
+      </ion-card-title>
+      <ion-card-content>
+        <p><span class="tipo-item">Descrição: </span>
+          <span class="item">{{ guardaResposta.descricao }}</span>
+        </p>
+        <p><span class="tipo-item">Pontos: </span>
+          <span class="item">{{ guardaResposta.pontos }}</span>
+        </p>
+        <p><span class="tipo-item">Valor: </span>
+          <span class="item">{{ guardaResposta.valor}}</span>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

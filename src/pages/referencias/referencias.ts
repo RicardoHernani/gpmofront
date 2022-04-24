@@ -11,15 +11,25 @@ import { ReferenciaService } from '../../services/domain/referencia.service';
 export class ReferenciasPage {
   isTyped : boolean = false;
   refs : ReferenciaDTO = {
-    codigo: ""
+    codigo: "",
+    descricao: ""
   };
   guardaResposta: ReferenciaDTO;
   
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public referenciaService: ReferenciaService) {
+  }
+
+  showBy() {
+    if (this.refs.codigo !== "" && this.refs.descricao ==="")  {
+      this.showByCodigo();
+    } else if (this.refs.codigo ==="" && this.refs.descricao !== "") {
+      this.showByDescricao();
+    } else if (this.refs.codigo !== "" && this.refs.descricao !== "") {
+    console.log("Erro. Só pode haver um!");
+    }
   }
 
   showByCodigo() {
@@ -32,4 +42,15 @@ export class ReferenciasPage {
         console.log(error);
       });
   }
+
+  showByDescricao() {
+    this.referenciaService.findByDescricao(this.refs.descricao)
+      .subscribe(resposta => {
+        console.log(resposta)
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
 }

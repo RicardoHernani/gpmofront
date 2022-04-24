@@ -25,22 +25,34 @@
 
   <br/>
 
-  <div>
-    <ion-card class="cor-card" *ngIf="isTyped">
-      <ion-card-title>
-        <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
-      </ion-card-title>
-      <ion-card-content>
-        <p><span class="tipo-item">Descrição: </span>
-          <span class="item">{{ guardaResposta.descricao }}</span>
-        </p>
-        <p><span class="tipo-item">Pontos: </span>
-          <span class="item">{{ guardaResposta.pontos }}</span>
-        </p>
-        <p><span class="tipo-item">Valor: </span>
-          <span class="item">{{ guardaResposta.valor}}</span>
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ng-container *ngIf="(isShowByCodigo == true && isShowByDescricao == false) ||
+                (isShowByCodigo == false && isShowByDescricao == true); else showDefault">
+      <ng-container *ngIf="isShowByCodigo ==true && isShowByDescricao==false; else showTabelaDescricao">
+        <ion-card class="cor-card" *ngIf="isTyped">
+          <ion-card-title>
+            <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
+          </ion-card-title>
+          <ion-card-content>
+            <p><span class="tipo-item">Descrição: </span>
+              <span class="item">{{ guardaResposta.descricao }}</span>
+            </p>
+            <p><span class="tipo-item">Pontos: </span>
+              <span class="item">{{ guardaResposta.pontos }}</span>
+            </p>
+            <p><span class="tipo-item">Valor: </span>
+              <span class="item">{{ guardaResposta.valor}}</span>
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+
+      <ng-template #showTabelaDescricao>
+        Mostra tabela descrição
+      </ng-template>
+
+  </ng-container>
+
+  <ng-template #showDefault>
+  </ng-template>
+
 </ion-content>

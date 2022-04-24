@@ -10,6 +10,8 @@ import { ReferenciaService } from '../../services/domain/referencia.service';
 })
 export class ReferenciasPage {
   isTyped : boolean = false;
+  isShowByCodigo: boolean = false;
+  isShowByDescricao: boolean = false;
   refs : ReferenciaDTO = {
     codigo: "",
     descricao: ""
@@ -24,8 +26,12 @@ export class ReferenciasPage {
 
   showBy() {
     if (this.refs.codigo !== "" && this.refs.descricao ==="")  {
+      this.isShowByCodigo = true;
+      this.isShowByDescricao = false;
       this.showByCodigo();
     } else if (this.refs.codigo ==="" && this.refs.descricao !== "") {
+      this.isShowByCodigo = false;
+      this.isShowByDescricao = true;
       this.showByDescricao();
     } else if (this.refs.codigo !== "" && this.refs.descricao !== "") {
     console.log("Erro. Só pode haver um!");

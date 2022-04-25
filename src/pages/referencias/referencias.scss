@@ -1,28 +1,29 @@
 page-referencias {
 
-    h4, ion-card-title  {
+    .propriedade-card {
+        background-color: #cfe1fd;
+    }
+
+    .titulo-card{
+        font-size: 10px;
         text-align: center;
-       
+    }
+
+    .tipo-item{
+        font-size: 14px;
+    }
+
+    .item{
+        font-size: 12px;
+    }
+
+    h4 {
+        text-align: center;
+        font-size: 16px;
     }
 
     h6 {
         text-align: center;
-        font-size: 18px;
-    }
-
-    .cor-card {
-        background-color: #e7f0ff;
-    }
-
-    .titulo-card{
-        font-size: 20px;
-    }
-
-    .tipo-item{
-        font-size: 18px;
-    }
-
-    .item{
         font-size: 14px;
     }
 

@@ -26,41 +26,45 @@
   <ng-container *ngIf="(isShowByCodigo == true && isShowByDescricao == false) ||
                 (isShowByCodigo == false && isShowByDescricao == true); else showDefault">
       <ng-container *ngIf="isShowByCodigo == true && isShowByDescricao == false; else showTabelaDescricao">
-        <ion-card class="cor-card" *ngIf="isTyped">
-          <ion-card-title>
-            <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
+        <ion-card class="propriedade-card" *ngIf="isTyped">
+          <ion-card-title class="titulo-card" >
+            <p>Código: {{ guardaResposta.codigo }}</p>
           </ion-card-title>
           <ion-card-content>
-            <p><span class="tipo-item">Descrição: </span>
-              <span class="item">{{ guardaResposta.descricao }}</span>
+            <p><span class="tipo-item">Descrição:</span>
+               <span class="item">{{ guardaResposta.descricao }}</span>
             </p>
-            <p><span class="tipo-item">Pontos: </span>
-              <span class="item">{{ guardaResposta.pontos }}</span>
+            <p><span class="tipo-item">Pontos:</span>
+               <span class="item">{{ guardaResposta.pontos }}</span>
             </p>
-            <p><span class="tipo-item">Valor: </span>
-              <span class="item">{{ guardaResposta.valor}}</span>
+            <p><span class="tipo-item">Valor:</span>
+               <span class="item">{{ guardaResposta.valor}}</span>
             </p>
           </ion-card-content>
         </ion-card>
       </ng-container>
+
       <ng-template #showTabelaDescricao>
-        <table>
-          <tr>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Pontos</th>
-            <th>Valor</th>
-          </tr>
-          <tr *ngFor="let item of items">
-            <td>{{ item.codigo }}</td>
-            <td>{{ item.descricao }}</td>
-            <td>{{ item.pontos }}</td>
-            <td>{{ item.valor | currency}}</td>
-          </tr>
-        </table>
+        <ion-card class="propriedade-card" *ngFor="let item of items">
+          <ion-card-title class="titulo-card">
+            <p>Código: {{ item.codigo }}</p>
+          </ion-card-title>
+          <ion-card-content>
+            <p><span class="tipo-item">Descrição:</span>
+               <span class="item">{{ item.descricao }}</span>
+            </p>
+            <p><span class="tipo-item">Pontos:</span>
+               <span class="item">{{ item.pontos }}</span>
+            </p>
+            <p><span class="tipo-item">Valor:</span>
+               <span class="item">{{ item.valor | currency }}</span>
+            </p>
+          </ion-card-content>
+        </ion-card>
       </ng-template>
   </ng-container>
 
   <ng-template #showDefault>
   </ng-template>
+
 </ion-content>

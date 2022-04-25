@@ -22,12 +22,10 @@
     <br/>
     <button ion-button block (click)="showBy()">OK</button>
   </form>
-
   <br/>
-
   <ng-container *ngIf="(isShowByCodigo == true && isShowByDescricao == false) ||
                 (isShowByCodigo == false && isShowByDescricao == true); else showDefault">
-      <ng-container *ngIf="isShowByCodigo ==true && isShowByDescricao==false; else showTabelaDescricao">
+      <ng-container *ngIf="isShowByCodigo == true && isShowByDescricao == false; else showTabelaDescricao">
         <ion-card class="cor-card" *ngIf="isTyped">
           <ion-card-title>
             <h3 class="titulo-card">Código: {{ guardaResposta.codigo }}</h3>
@@ -45,14 +43,24 @@
           </ion-card-content>
         </ion-card>
       </ng-container>
-
       <ng-template #showTabelaDescricao>
-        Mostra tabela descrição
+        <table>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Pontos</th>
+            <th>Valor</th>
+          </tr>
+          <tr *ngFor="let item of items">
+            <td>{{ item.codigo }}</td>
+            <td>{{ item.descricao }}</td>
+            <td>{{ item.pontos }}</td>
+            <td>{{ item.valor | currency}}</td>
+          </tr>
+        </table>
       </ng-template>
-
   </ng-container>
 
   <ng-template #showDefault>
   </ng-template>
-
 </ion-content>

@@ -17,6 +17,7 @@ export class ReferenciasPage {
     descricao: ""
   };
   guardaResposta: ReferenciaDTO;
+  items: ReferenciaDTO[];
   
   constructor(
     public navCtrl: NavController,
@@ -52,11 +53,10 @@ export class ReferenciasPage {
   showByDescricao() {
     this.referenciaService.findByDescricao(this.refs.descricao)
       .subscribe(resposta => {
-        console.log(resposta)
+        this.items = resposta['content'];
       },
       error => {
         console.log(error);
       });
   }
-
 }

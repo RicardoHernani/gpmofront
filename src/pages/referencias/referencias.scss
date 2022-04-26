@@ -4,16 +4,21 @@ page-referencias {
         background-color: #cfe1fd;
     }
 
-    .titulo-card{
+    .titulo-card {
         font-size: 10px;
         text-align: center;
+
+        p {
+            font-weight: bold; 
+        }
     }
 
-    .tipo-item{
+    .tipo-item {
         font-size: 14px;
+        font-weight: bold;
     }
 
-    .item{
+    .item {
         font-size: 12px;
     }
 

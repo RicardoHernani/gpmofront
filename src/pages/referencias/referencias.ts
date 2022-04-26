@@ -45,9 +45,7 @@ export class ReferenciasPage {
         this.guardaResposta = resposta;
         this.isTyped = true;
       },
-      error => {
-        console.log(error);
-      });
+      error => {});
   }
 
   showByDescricao() {
@@ -55,8 +53,7 @@ export class ReferenciasPage {
       .subscribe(resposta => {
         this.items = resposta['content'];
       },
-      error => {
-        console.log(error);
-      });
+      error => {});
   }
+  
 }

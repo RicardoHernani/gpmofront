@@ -26,11 +26,11 @@ export class ReferenciasPage {
   }
 
   showBy() {
-    if (this.refs.codigo !== "" && this.refs.descricao ==="")  {
+    if (this.refs.codigo !== "" && this.refs.descricao === "")  {
       this.isShowByCodigo = true;
       this.isShowByDescricao = false;
       this.showByCodigo();
-    } else if (this.refs.codigo ==="" && this.refs.descricao !== "") {
+    } else if (this.refs.codigo === "" && this.refs.descricao !== "") {
       this.isShowByCodigo = false;
       this.isShowByDescricao = true;
       this.showByDescricao();

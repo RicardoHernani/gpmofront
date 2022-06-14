@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 @IonicPage()
 @Component({
   selector: 'page-cirurgias',
@@ -11,7 +12,9 @@ export class CirurgiasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-
+  insertCirurgias() {
+    this.navCtrl.push('CirurgiasInsertPage');
+  }
 
 /*
 itemTapped(event, item) {

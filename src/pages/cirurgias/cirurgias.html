@@ -9,16 +9,16 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item>
-      <ion-icon name="filing" item-start (click)="insertCirurgias()"></ion-icon>
+    <button ion-item (click)="insertCirurgias()">
+      <ion-icon name="filing" item-start></ion-icon>
       Inserir
     </button>
-    <button ion-item>
-      <ion-icon name="undo" item-start (click)="updateCirurgias()"></ion-icon>
+    <button ion-item (click)="updateCirurgias()">
+      <ion-icon name="undo" item-start></ion-icon>
       Alterar
     </button>
-    <button ion-item>
-      <ion-icon name="trash" item-start (click)="deleteCirurgias()"></ion-icon>
+    <button ion-item (click)="deleteCirurgias()">
+      <ion-icon name="trash" item-start></ion-icon>
       Apagar
     </button>
   </ion-list>

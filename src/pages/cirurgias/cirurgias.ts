@@ -25,6 +25,4 @@ itemTapped(event, item) {
   }
   */
 
-
-
 }

@@ -26,7 +26,7 @@ export class ProfilePage {
       this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {
           this.usuario = response;
-          // buscar imagem na AWS - se quiser fazer no futuro
+          // buscar foto na AWS - se quiser fazer no futuro
         },
         error => {
           if (error.status == 403) {

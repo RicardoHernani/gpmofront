@@ -22,6 +22,7 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+    // itens do menu sandwich
     this.pages = [
       { title: 'Referências', component: 'ReferenciasPage' },
       { title: 'Cirurgias', component: 'CirurgiasPage' },

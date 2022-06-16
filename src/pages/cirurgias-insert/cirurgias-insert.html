@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="formGroup" (ngSubmit)="cirurgiaInsert(); $event.preventDefault()">
+  <form [formGroup]="formGroup" (ngSubmit)="saveCirurgia(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Matrícula*</ion-label>
       <ion-input formControlName="matricula" type="number"></ion-input>
     </ion-item>
-    <p class="danger" *ngIf="formGroup.controls['matricula'].dirty && formGroup.controls['matricula'].errors" margin-left>Matrícula deve ser entre 8 e 12 dígitos)</p>
+    <p class="danger" *ngIf="formGroup.controls['matricula'].dirty && formGroup.controls['matricula'].errors" margin-left>Matrícula deve ser entre 6 e 9 dígitos</p>
     <br/>
     <ion-item>
       <ion-label stacked>Data*</ion-label>

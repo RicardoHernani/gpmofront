@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form [formGroup]="formGroup" (ngSubmit)="saveCirurgia(); $event.preventDefault()">
+  <form [formGroup]="formGroup" (ngSubmit)="loadUsuario(); $event.preventDefault()">
     <ion-item>
       <ion-label stacked>Matrícula*</ion-label>
       <ion-input formControlName="matricula" type="number"></ion-input>
@@ -55,7 +55,7 @@
     <button ion-button block type="submit" >Mais Procedimentos</button>
   </form>
   <br/>
-  <button class="botao" ion-button block type="submit" >Finalizar</button>
+  <button color="secondary" ion-button block type="submit" >Finalizar</button>
 
 <!--
   <ion-card class="propriedade-card" *ngIf="isTyped">

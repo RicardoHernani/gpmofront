@@ -30,7 +30,7 @@ formGroup: FormGroup;
       });
   }
 
-    saveCirurgia() {
+  saveCirurgia() {
     this.cirurgiaService.insertCirurgia(this.cirurgia)
       .subscribe(response => {
         this.showInsertOk();
@@ -45,7 +45,10 @@ formGroup: FormGroup;
       enableBackdropDismiss: false,
       buttons: [
         {
-          text: 'Ok'
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.setRoot('ProcedimentosInsertPage');
+          }
         }
       ]
     });
@@ -66,8 +69,7 @@ formGroup: FormGroup;
     alert.present();
   }
 
-
-    loadUsuario() {
+  loadUsuario() {
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
@@ -78,6 +80,7 @@ formGroup: FormGroup;
             usuarioId: response.id
           };
           this.saveCirurgia();
+         
         },
         error => {
           if (error.status == 403) {

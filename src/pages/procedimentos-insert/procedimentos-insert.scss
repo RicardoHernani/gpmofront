@@ -1,3 +1,32 @@
 page-procedimentos-insert {
+    .danger {
+        color: red;
+    }
+
+    ion-list-header {
+        text-align: center;
+    }
+
+    .propriedade-card {
+        background-color: #cfe1fd;
+    }
+
+    .titulo-card {
+        font-size: 10px;
+        text-align: center;
+
+        p {
+            font-weight: bold; 
+        }
+    }
+
+    .tipo-item {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .item {
+        font-size: 12px;
+    }
 
 }

@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <form [formGroup]="formGroup" (ngSubmit)="loadCirurgia(); $event.preventDefault()">
-    <ion-list radio-group name="tipo">
+    <ion-list radio-group formControlName="tipo">
       <ion-list-header>Tipo de Procedimento*</ion-list-header>
       <ion-item>
         <ion-label>Principal</ion-label>
@@ -18,7 +18,7 @@
       </ion-item>
     </ion-list>
     <br/>
-    <ion-list radio-group name="premio">
+    <ion-list radio-group formControlName="premio">
       <ion-list-header>Prêmio do Procedimento*</ion-list-header>
       <ion-item>
         <ion-label>Pontos</ion-label>
@@ -31,14 +31,14 @@
     </ion-list>
     <ion-item>
       <ion-label stacked>Código do procedimento*</ion-label>
-      <ion-input name="codigo" type="number"></ion-input>
+      <ion-input formControlName="codigo" type="number"></ion-input>
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls['codigo'].dirty && formGroup.controls['codigo'].errors" margin-left>O Código teve conter 8 dígitos</p>
     <br/>
-    <button ion-button block type="submit" >Mais Procedimentos</button>
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Inserir mais Procedimento</button>
   </form>
   <br/>
-  <button color="secondary" ion-button block type="submit" >Finalizar</button>
+  <button color="secondary" ion-button block type="submit" [disabled]="formGroup.invalid" >Finalizar</button>
 
 <!--
   <ion-card class="propriedade-card" *ngIf="isTyped">

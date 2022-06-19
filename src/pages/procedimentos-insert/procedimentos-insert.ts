@@ -20,7 +20,10 @@ export class ProcedimentosInsertPage {
     public alertCtrl: AlertController) {
 
       this.formGroup = this.formBuilder.group({
-        codigo: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]]
+        tipo: ['', [Validators.required]],
+        premio: ['', [Validators.required]],
+        codigo: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]]
+
       });
   }
 

@@ -34,8 +34,8 @@ codCirurgia: string;
   saveCirurgia() {
     this.cirurgiaService.insertCirurgia(this.cirurgia)
       .subscribe(response => {
-        this.showInsertOk();
         this.codCirurgia = this.extractId(response.headers.get('location'));
+        this.showInsertOk();
       },
       error => {});
   }
@@ -49,7 +49,7 @@ codCirurgia: string;
         {
           text: 'Ok',
           handler: () => {
-            this.navCtrl.setRoot('ProcedimentosInsertPage');
+            this.navCtrl.setRoot('ProcedimentosInsertPage', {codCirurgia: this.codCirurgia});
           }
         }
       ]

@@ -5,7 +5,6 @@ import { StorageService } from '../../services/storage.service';
 import { CirurgiaService } from '../../services/domain/cirurgia.service';
 import { ProcedimentoForm } from '../../models/procedimentoForm';
 import { ProcedimentoService } from '../../services/domain/procedimento.service';
-import { CirurgiasInsertPage } from '../cirurgias-insert/cirurgias-insert';
 
 @IonicPage()
 @Component({
@@ -16,13 +15,18 @@ export class ProcedimentosInsertPage {
 
   formGroup: FormGroup;
   procedimento: ProcedimentoForm;
+  codCirurgia: string;
 
-    constructor(public navCtrl: NavController,
+    constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
       public formBuilder: FormBuilder,
       public storage: StorageService,
       public cirurgiaService: CirurgiaService,
       public procedimentoService: ProcedimentoService,
       public alertCtrl: AlertController) {
+        
+        this.codCirurgia = this.navParams.get('codCirurgia')
 
         this.formGroup = this.formBuilder.group({
           tipo: ['', [Validators.required]],
@@ -43,15 +47,16 @@ export class ProcedimentosInsertPage {
 
     inserirFinalizarProcedimento(){
       console.log('ifp');
+      console.log(this.codCirurgia);
     }
 
     inserirMaisProcedimento(){
       console.log('imp');
     }
 
+    
 
-
-
+/*
 
 
     saveProcedimento() {
@@ -92,7 +97,7 @@ export class ProcedimentosInsertPage {
       });
       alert.present();
     }
-/*
+
     loadCirurgia() {
         let localUser = this.storage.getLocalUser();
         if (localUser && localUser.email) {
@@ -123,11 +128,8 @@ export class ProcedimentosInsertPage {
 
 */
 
-
-
-
-    ionViewDidLoad() {
-      console.log(CirurgiasInsertPage.get);
-    }
+    
+    
+    
 
 }

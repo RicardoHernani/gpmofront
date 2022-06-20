@@ -3,6 +3,9 @@ import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from '../../services/storage.service';
 import { CirurgiaService } from '../../services/domain/cirurgia.service';
+import { ProcedimentoForm } from '../../models/procedimentoForm';
+import { ProcedimentoService } from '../../services/domain/procedimento.service';
+import { CirurgiasInsertPage } from '../cirurgias-insert/cirurgias-insert';
 
 @IonicPage()
 @Component({
@@ -12,29 +15,119 @@ import { CirurgiaService } from '../../services/domain/cirurgia.service';
 export class ProcedimentosInsertPage {
 
   formGroup: FormGroup;
+  procedimento: ProcedimentoForm;
 
-  constructor(public navCtrl: NavController,
-    public formBuilder: FormBuilder,
-    public storage: StorageService,
-    public cirurgiaService: CirurgiaService,
-    public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController,
+      public formBuilder: FormBuilder,
+      public storage: StorageService,
+      public cirurgiaService: CirurgiaService,
+      public procedimentoService: ProcedimentoService,
+      public alertCtrl: AlertController) {
 
-      this.formGroup = this.formBuilder.group({
-        tipo: ['', [Validators.required]],
-        premio: ['', [Validators.required]],
-        codigo: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]]
+        this.formGroup = this.formBuilder.group({
+          tipo: ['', [Validators.required]],
+          premio: ['', [Validators.required]],
+          referenciaCodigo: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]]
 
+        });
+    }
+
+    onSubmit(buttonType): void {
+      if(buttonType==="inserirMaisProcedimento") {
+          this.inserirMaisProcedimento();
+      }
+      if(buttonType==="inserirFinalizarProcedimento"){
+          this.inserirFinalizarProcedimento();
+      }
+    }
+
+    inserirFinalizarProcedimento(){
+      console.log('ifp');
+    }
+
+    inserirMaisProcedimento(){
+      console.log('imp');
+    }
+
+
+
+
+
+
+    saveProcedimento() {
+      this.procedimentoService.insertProcedimento(this.procedimento)
+        .subscribe(response => {
+          this.showInsertOk();
+        },
+        error => {});
+    }
+      
+    showInsertOk() {
+      let alert = this.alertCtrl.create({
+        title: 'Sucesso!',
+        message: 'Procedimento cadastrado com sucesso!',
+        enableBackdropDismiss: false,
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+              this.navCtrl.setRoot('ProcedimentosInsertPage');
+            }
+          }
+        ]
       });
-  }
+      alert.present();
+    }
 
-  loadCirurgia(){
+    showInsertNotOk() {
+      let alert = this.alertCtrl.create({
+        title: 'Falhou!',
+        message: 'Procedimento NÃO cadastrado. Repetir cadastro!',
+        enableBackdropDismiss: false,
+        buttons: [
+          {
+            text: 'Ok'
+          }
+        ]
+      });
+      alert.present();
+    }
+/*
+    loadCirurgia() {
+        let localUser = this.storage.getLocalUser();
+        if (localUser && localUser.email) {
+          this.usuarioService.findByEmail(localUser.email)
+            .subscribe(response => {
+              this.procedimento = {
+                tipo: this.formGroup.value.tipo,
+                premio: this.formGroup.value.premio,
+                cirurgiaId: response.id,
+                referenciaCodigo: this.formGroup.value.referenciaCodigo
+              };
+              this.saveProcedimento();
+            
+            },
+            error => {
+              if (error.status == 403) {
+                this.showInsertNotOk();
+                this.navCtrl.setRoot('CirurgiasInsertPage');
+              }
+            });
+        }
+        else {
+          this.showInsertNotOk();
+          this.navCtrl.setRoot('CirurgiasInsertPage');
+        }
+      }
 
-  }
+
+*/
 
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProcedimentosInsertPage');
-  }
+
+    ionViewDidLoad() {
+      console.log(CirurgiasInsertPage.get);
+    }
 
 }

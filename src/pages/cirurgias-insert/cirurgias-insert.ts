@@ -15,6 +15,7 @@ export class CirurgiasInsertPage {
 
 cirurgia: CirurgiaForm;
 formGroup: FormGroup;
+codCirurgia: string;
 
   constructor(
      public navCtrl: NavController,
@@ -34,6 +35,7 @@ formGroup: FormGroup;
     this.cirurgiaService.insertCirurgia(this.cirurgia)
       .subscribe(response => {
         this.showInsertOk();
+        this.codCirurgia = this.extractId(response.headers.get('location'));
       },
       error => {});
   }
@@ -80,7 +82,6 @@ formGroup: FormGroup;
             usuarioId: response.id
           };
           this.saveCirurgia();
-         
         },
         error => {
           if (error.status == 403) {
@@ -93,6 +94,11 @@ formGroup: FormGroup;
       this.showInsertNotOk();
       this.navCtrl.setRoot('CirurgiasInsertPage');
     }
+  }
+
+  private extractId(location : string) : string {
+    let position = location.lastIndexOf('/');
+    return location.substring(position +1, location.length)
   }
 
 }

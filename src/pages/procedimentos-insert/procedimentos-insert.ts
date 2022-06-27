@@ -5,6 +5,7 @@ import { StorageService } from '../../services/storage.service';
 import { CirurgiaService } from '../../services/domain/cirurgia.service';
 import { ProcedimentoForm } from '../../models/procedimentoForm';
 import { ProcedimentoService } from '../../services/domain/procedimento.service';
+import { ReferenciaService } from '../../services/domain/referencia.service';
 
 @IonicPage()
 @Component({
@@ -24,15 +25,15 @@ export class ProcedimentosInsertPage {
       public storage: StorageService,
       public cirurgiaService: CirurgiaService,
       public procedimentoService: ProcedimentoService,
+      public referenciaService: ReferenciaService,
       public alertCtrl: AlertController) {
         
-        this.codCirurgia = this.navParams.get('codCirurgia')
+        this.codCirurgia = this.navParams.get('codCirurgia');
 
         this.formGroup = this.formBuilder.group({
           tipo: ['', [Validators.required]],
           premio: ['', [Validators.required]],
           referenciaCodigo: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]]
-
         });
     }
 
@@ -45,26 +46,47 @@ export class ProcedimentosInsertPage {
       }
     }
 
-    inserirFinalizarProcedimento(){
-      console.log('ifp');
-      console.log(this.codCirurgia);
+    inserirFinalizarProcedimento() {
+      let localUser = this.storage.getLocalUser();
+      if (this.codCirurgia && localUser && localUser.email) {
+        this.procedimento = {
+          tipo: this.formGroup.value.tipo,
+          premio: this.formGroup.value.premio,
+          cirurgiaId: this.codCirurgia,
+          referenciaCodigo: this.formGroup.value.referenciaCodigo
+        };
+      }
+      else {
+          this.showInsertNotOk();
+      }
+      
+      if (this.procedimento.referenciaCodigo != null) {
+        this.referenciaService.findByCodigo(this.procedimento.referenciaCodigo)
+        .subscribe(response => {
+          this.saveProcedimento();
+        },
+        error => {
+          if (error.status == 404) {
+          }
+        });
+      }
+      else {
+        this.navCtrl.setRoot('ProcedimentosInsertPage');
+      }
     }
 
-    inserirMaisProcedimento(){
+    inserirMaisProcedimento() {
       console.log('imp');
     }
-
-    
-
-/*
-
 
     saveProcedimento() {
       this.procedimentoService.insertProcedimento(this.procedimento)
         .subscribe(response => {
           this.showInsertOk();
         },
-        error => {});
+        error => {
+          this.showInsertNotOk();
+        });
     }
       
     showInsertOk() {
@@ -76,7 +98,7 @@ export class ProcedimentosInsertPage {
           {
             text: 'Ok',
             handler: () => {
-              this.navCtrl.setRoot('ProcedimentosInsertPage');
+              this.navCtrl.setRoot('CirurgiasInsertPage');
             }
           }
         ]
@@ -91,45 +113,15 @@ export class ProcedimentosInsertPage {
         enableBackdropDismiss: false,
         buttons: [
           {
-            text: 'Ok'
+            text: 'Ok',
+            handler: () => {
+              this.navCtrl.setRoot('ProcedimentosInsertPage');
+            }
+
           }
         ]
       });
       alert.present();
     }
-
-    loadCirurgia() {
-        let localUser = this.storage.getLocalUser();
-        if (localUser && localUser.email) {
-          this.usuarioService.findByEmail(localUser.email)
-            .subscribe(response => {
-              this.procedimento = {
-                tipo: this.formGroup.value.tipo,
-                premio: this.formGroup.value.premio,
-                cirurgiaId: response.id,
-                referenciaCodigo: this.formGroup.value.referenciaCodigo
-              };
-              this.saveProcedimento();
-            
-            },
-            error => {
-              if (error.status == 403) {
-                this.showInsertNotOk();
-                this.navCtrl.setRoot('CirurgiasInsertPage');
-              }
-            });
-        }
-        else {
-          this.showInsertNotOk();
-          this.navCtrl.setRoot('CirurgiasInsertPage');
-        }
-      }
-
-
-*/
-
-    
-    
-    
 
 }

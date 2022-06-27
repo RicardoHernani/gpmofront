@@ -39,6 +39,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.handle422(errorObj);
                 break;
 
+                case 404:
+                this.handle404(errorObj);
+                break;
+
                 default:
                 this.handleDefaultError(errorObj);
             }
@@ -78,6 +82,21 @@ export class ErrorInterceptor implements HttpInterceptor {
         });
         alert.present();
     }
+
+    handle404(errorObj) {
+        let alert = this.alertCtrl.create({
+            title: 'Erro 404: código inexistente',
+            message: errorObj.errorMessage.substring(39, 0),
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
+    }
+    
 
     handleDefaultError(errorObj) {
         let alert  = this.alertCtrl.create({

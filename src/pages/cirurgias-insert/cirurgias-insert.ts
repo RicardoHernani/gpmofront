@@ -34,7 +34,7 @@ codCirurgia: string;
   saveCirurgia() {
     this.cirurgiaService.insertCirurgia(this.cirurgia)
       .subscribe(response => {
-        this.codCirurgia = this.extractId(response.headers.get('location'));
+        this.codCirurgia = (this.extractId(response.headers.get('location')));
         this.showInsertOk();
       },
       error => {});

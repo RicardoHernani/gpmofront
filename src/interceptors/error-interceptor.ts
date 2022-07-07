@@ -85,8 +85,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     handle404(errorObj) {
         let alert = this.alertCtrl.create({
-            title: 'Erro 404: código inexistente',
-            message: errorObj.errorMessage.substring(39, 0),
+            title: 'Erro 404: Não encontrado',
+            message: errorObj.errorMessage.substring(39, 0) + '  inexistente!',
             enableBackdropDismiss: false,
             buttons: [
                 {

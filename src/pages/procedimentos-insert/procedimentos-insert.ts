@@ -6,6 +6,7 @@ import { CirurgiaService } from '../../services/domain/cirurgia.service';
 import { ProcedimentoForm } from '../../models/procedimentoForm';
 import { ProcedimentoService } from '../../services/domain/procedimento.service';
 import { ReferenciaService } from '../../services/domain/referencia.service';
+import { ReferenciaDTO } from '../../models/referencia.dto';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,8 @@ export class ProcedimentosInsertPage {
   formGroup: FormGroup;
   procedimento: ProcedimentoForm;
   codCirurgia: string;
+  hasCodigo: boolean = false;
+  guardaResposta: ReferenciaDTO;
 
     constructor(
       public navCtrl: NavController,
@@ -37,16 +40,38 @@ export class ProcedimentosInsertPage {
         });
     }
 
-    onSubmit(buttonType): void {
-      if(buttonType==="inserirMaisProcedimento") {
-          this.inserirMaisProcedimento();
-      }
-      if(buttonType==="inserirFinalizarProcedimento"){
-          this.inserirFinalizarProcedimento();
-      }
+    cancelarInsertProcedimento() {
+      let alert = this.alertCtrl.create({
+        title: 'Cancelado!',
+        message: 'Procedimento NÃO cadastrado. Repetir cadastro!',
+        enableBackdropDismiss: false,
+        buttons: [
+          {
+            text: 'Ok',
+            handler: () => {
+              this.inserirProcedimento();
+            }
+          }
+        ]
+      });
+      alert.present();
     }
 
-    inserirFinalizarProcedimento() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    inserirProcedimento() {
       let localUser = this.storage.getLocalUser();
       if (this.codCirurgia && localUser && localUser.email) {
         this.procedimento = {
@@ -63,6 +88,8 @@ export class ProcedimentosInsertPage {
       if (this.procedimento.referenciaCodigo != null) {
         this.referenciaService.findByCodigo(this.procedimento.referenciaCodigo)
         .subscribe(response => {
+          this.guardaResposta = response;
+          this.hasCodigo = true;
           this.saveProcedimento();
         },
         error => {
@@ -75,20 +102,31 @@ export class ProcedimentosInsertPage {
       }
     }
 
-    inserirMaisProcedimento() {
-      console.log('imp');
-    }
+
+
+
+
+
+
+
 
     saveProcedimento() {
       this.procedimentoService.insertProcedimento(this.procedimento)
         .subscribe(response => {
-          this.showInsertOk();
         },
         error => {
           this.showInsertNotOk();
         });
     }
       
+
+
+
+
+
+
+
+
     showInsertOk() {
       let alert = this.alertCtrl.create({
         title: 'Sucesso!',
@@ -117,7 +155,6 @@ export class ProcedimentosInsertPage {
             handler: () => {
               this.navCtrl.setRoot('ProcedimentosInsertPage');
             }
-
           }
         ]
       });
